@@ -25,5 +25,5 @@ echo "--------------------------------------------------------------------------
 echo ""
 # Sync the database in its current state to the slave
 sudo -u postgres psql -d postgres -c "select pg_start_backup('initial')"
-sudo -u postgres rsync -a -v -e ssh /var/lib/postgresql/9.1/main/ 33.33.33.13:/var/lib/postgresql/9.1/main/ --exclude postmaster.pid
+sudo -u postgres rsync -a -L -v -e ssh /var/lib/postgresql/9.1/main/ 33.33.33.13:/var/lib/postgresql/9.1/main/ --exclude postmaster.pid
 sudo -u postgres psql -d postgres -c "select pg_stop_backup()"
